@@ -11,6 +11,8 @@
 
 namespace SymfonyUtil\Component\HttpFoundationPOInterface;
 
+use Symfony\Component\HttpFoundation\Request;
+
 class ControllerModel // implements interface in SU//HttpF
 {
     protected $actionModel; // interface in SU//HttpF + POI(return type (php 7 -> s4 + php 7.1)
@@ -22,7 +24,7 @@ class ControllerModel // implements interface in SU//HttpF
         $this->viewModel = $viewModel;
     }
 
-    public function index(Request $request)
+    public function __invoke(Request $request)
     {
         return $this->viewModel->index($this->actionModel->index($request));
     }
