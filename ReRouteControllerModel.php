@@ -47,8 +47,9 @@ class ReRouteControllerModel implements ControllerModelInterface
         $actionResult = $this->actionModel($request); // resturns ResponseMixedInterface
         if ($actionResult->getRoute()) {
 
-            return new ResponseParameters({}, $this->reRoute($actionResult->getRoute(), $actionResult->getParameters()));
-            // TODO: To be filtered by viewmodel
+            return new ResponseParameters([], $this->reRoute($actionResult->getRoute(), $actionResult->getParameters()));
+            // TODO: To be filtered by
+            // $this->viewModel[$actionResult->getRoute()](...$actionResult->getParameters())
         }
 
         return new ResponseParameters($actionResult->getParameters());
