@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace SymfonyUtil\Component\HttpFoundation;
+namespace SymfonyUtil\Component\HttpFoundationPOInterface;
 
 // Similar namespace in Symfony
 // https://github.com/symfony/symfony/tree/v3.3.8/src/Symfony/Component/Routing/Generator
@@ -17,12 +17,12 @@ namespace SymfonyUtil\Component\HttpFoundation;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
-use SymfonyUtil\Component\HttpFoundation\ReRouteControllerModelInterface;
+use SymfonyUtil\Component\HttpFoundation\ControllerModelInterface;
 use SymfonyUtil\Component\HttpFoundation\ReRouteInterface;
 
 // use SymfonyUtil\Component\HttpFoundation\ResponseParameters;
 
-class ReRouteControllerModel implements ReRouteControllerModelInterface
+class ReRouteControllerModel implements ControllerModelInterface
 {
     protected $reRoute;
 
@@ -41,9 +41,18 @@ class ReRouteControllerModel implements ReRouteControllerModelInterface
      *
      * @see Interface ReRouteControllerModelInterface
      */
-    public function __invoke($route, $parameters = [], Request $request = null)
+    // public function __invoke($route, $parameters = [], Request $request = null)
+    public function __invoke(Request $request = null)
     {
-        return new ResponseParameters({}, $this->reRoute($route, $parameters));
+        $actionResult = $this->actionModel($request); // resturns ResponseMixedInterface
+        if ($actionResult->getRoute()) {
+
+            return new ResponseParameters({}, $this->reRoute($actionResult->getRoute(), $actionResult->getParameters()));
+            // TODO: To be filtered by viewmodel
+        }
+
+        return new ResponseParameters($actionResult->getParameters());
+        // TODO: To be filtered by viewmodel
     }
 }
 
