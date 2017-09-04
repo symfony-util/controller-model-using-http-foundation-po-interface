@@ -11,8 +11,6 @@
 
 namespace SymfonyUtil\Component\HttpFoundationPOInterface;
 
-use Symfony\Component\HttpFoundation\Request;
-
 class NullViewModel
 {
     public function __invoke(...$arguments) // PHP 5.6+
