@@ -1,0 +1,29 @@
+{
+    "name": "symfony-util/controller-model-using-http-foundation-po-interface",
+    "description": "Controller model calling action model and view model",
+    "keywords": ["controller", "controllermodel", "actionmodel", "viewmodel", "symfony", "snowyowl"],
+    "homepage": "https://github.com/symfony-util/controller-model-using-http-foundation-po-interface",
+    "license": "ISC",
+    "authors": [
+        {"name": "Jean-bernard Addor"},
+        {"name": "Community", "homepage": "https://github.com/symfony-util/controller-model-using-http-foundation-po-interface"}
+    ],
+    "require": {
+        "php": ">= 5.6",
+        "symfony/http-foundation": "^2.0 || ^3.0 || ^4.0",
+        "symfony-util/controller-model-using-http-foundation": "^0.1.0@dev"
+    },
+    "require-dev": {
+    },
+    "suggest": {
+    },
+    "autoload": {
+        "psr-4": { "SymfonyUtil\\Component\\HttpFoundationPOInterface\\": "" }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.1.x-dev"
+        }
+    }
+}
+
