@@ -28,7 +28,7 @@ class ControllerModel implements ControllerModelInterface // interface in SU//Ht
 
     public function __invoke(Request $request = null)
     {
-        return new ResponseParameters($this->viewModel->__invoke(...$this->actionModel($request))); // PHP 5.6+
+        return new ResponseParameters($this->viewModel->__invoke(...$this->actionModel->__invoke($request))); // PHP 5.6+
         // .. for php varying arguments between action and view model.
 
         // $actionResult = $this->actionModel($request); // resturns ResponseMixedInterface
