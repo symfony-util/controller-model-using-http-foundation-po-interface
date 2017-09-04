@@ -13,6 +13,7 @@ namespace SymfonyUtil\Component\HttpFoundationPOInterface;
 
 use Symfony\Component\HttpFoundation\Request;
 use SymfonyUtil\Component\HttpFoundation\ControllerModelInterface;
+use SymfonyUtil\Component\HttpFoundation\ResponseParameters;
 
 class ControllerModel implements ControllerModelInterface // interface in SU//HttpF
 {
