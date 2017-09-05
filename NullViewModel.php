@@ -10,6 +10,7 @@
  */
 
 namespace SymfonyUtil\Component\HttpFoundationPOInterface;
+// No dependency in HttpF so should be moved to POInterface
 
 class NullViewModel
 {
