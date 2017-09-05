@@ -26,9 +26,11 @@ class ReRouteControllerModel implements ControllerModelInterface
 {
     protected $reRoute;
 
-    public function __construct(ReRouteInterface $reRoute)
+    public function __construct(ReRouteInterface $reRoute, $actionModel, $viewModel)
     {
         $this->reRoute = $reRoute;
+        $this->actionModel = $actionModel;
+        $this->viewModel = $viewModel;
     }
 
     /**
@@ -47,13 +49,14 @@ class ReRouteControllerModel implements ControllerModelInterface
         $actionResult = $this->actionModel($request); // resturns ResponseMixedInterface
         if ($actionResult->getRoute()) {
 
-            return new ResponseParameters([], $this->reRoute($actionResult->getRoute(), $actionResult->getParameters()));
-            // TODO: To be filtered by
+            return new ResponseParameters([], $this->reRoute($actionResult->getRoute(), $actionResult->getRouteParameters()));
+            // TODO: To be filtered (one day) by
             // $this->viewModel[$actionResult->getRoute()](...$actionResult->getParameters())
+            // Seems a bit complicated for uncertain use!
         }
 
-        return new ResponseParameters($actionResult->getParameters());
-        // TODO: To be filtered by viewmodel
+        return new ResponseParameters($this->viewModel->__invoke($actionResult->getViewModelParameters()));
+        // TODO: To be filtered by viewmodel OK
     }
 }
 
