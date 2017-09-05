@@ -18,19 +18,4 @@ class NullViewModel
     {
         return [];
     }
-
-    public function getRoute()
-    {
-        return '';
-    }
-
-    public function getRouteParameters()
-    {
-        return [];
-    }
-
-    public function getTemplateParameters()
-    {
-        return [];
-    }
 }
