@@ -19,4 +19,19 @@ class NullActionModel
     {
         return [];
     }
+
+    public function getRoute()
+    {
+        return '';
+    }
+
+    public function getRouteParameters()
+    {
+        return [];
+    }
+
+    public function getViewModelParameters()
+    {
+        return [];
+    }
 }
