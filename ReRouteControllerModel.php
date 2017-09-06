@@ -46,10 +46,10 @@ class ReRouteControllerModel implements ControllerModelInterface
     // public function __invoke($route, $parameters = [], Request $request = null)
     public function __invoke(Request $request = null)
     {
-        $actionResult = $this->actionModel($request); // resturns ResponseMixedInterface
-        if ($actionResult->getRoute()) {
+        $actionResult = $this->actionModel($request); // resturns RouteNameParametersInterface
+        if ($actionResult->getRouteName()) {
 
-            return new ResponseParameters([], $this->reRoute($actionResult->getRoute(), $actionResult->getRouteParameters()));
+            return new ResponseParameters([], $this->reRoute($actionResult->getRouteName(), $actionResult->getRouteParameters()));
             // TODO: To be filtered (one day) by
             // $this->viewModel[$actionResult->getRoute()](...$actionResult->getParameters())
             // Seems a bit complicated for uncertain use!
