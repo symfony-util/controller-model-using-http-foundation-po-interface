@@ -17,21 +17,6 @@ class NullActionModel
 {
     public function __invoke(Request $request = null)
     {
-        return [];
-    }
-
-    public function getRoute()
-    {
-        return '';
-    }
-
-    public function getRouteParameters()
-    {
-        return [];
-    }
-
-    public function getViewModelParameters()
-    {
-        return [];
+        return new NullRouteNameParameters(); // RouteNameParametersInterface
     }
 }
