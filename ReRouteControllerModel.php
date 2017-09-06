@@ -55,7 +55,10 @@ class ReRouteControllerModel implements ControllerModelInterface
             // Seems a bit complicated for uncertain use!
         }
 
-        return new ResponseParameters($this->viewModel->__invoke($actionResult->getViewModelParameters()));
+        return new ResponseParameters($this->viewModel->__invoke(...$actionResult->getViewModelParameters())); // PHP 5.6+
+        // return new ResponseParameters($this->viewModel->__invoke($actionResult->getViewModelParameters()));
+        // .. for php varying arguments between action and view model.
+
         // TODO: To be filtered by viewmodel OK
     }
 }
