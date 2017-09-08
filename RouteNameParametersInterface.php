@@ -14,7 +14,7 @@ namespace SymfonyUtil\Component\HttpFoundationPOInterface;
 
 interface RouteNameParametersInterface
 {
-    public function getRoute(); // string
+    public function getRouteName(); // string
 
     public function getRouteParameters(); // array
 
