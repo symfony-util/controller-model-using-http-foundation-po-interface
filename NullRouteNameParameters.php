@@ -13,7 +13,7 @@ namespace SymfonyUtil\Component\HttpFoundationPOInterface;
 // TODO: Move to POI
 
 class NullRouteNameParameters{
-    public function getRoute()
+    public function getRouteName()
     {
         return '';
     }
