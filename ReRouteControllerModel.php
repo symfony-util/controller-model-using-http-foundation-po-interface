@@ -46,7 +46,7 @@ class ReRouteControllerModel implements ControllerModelInterface
     // public function __invoke($route, $parameters = [], Request $request = null)
     public function __invoke(Request $request = null)
     {
-        $actionResult = $this->actionModel($request); // resturns RouteNameParametersInterface
+        ($actionResult = $this->actionModel)($request); // resturns RouteNameParametersInterface
         if ($actionResult->getRouteName()) {
 
             return new ResponseParameters([], $this->reRoute($actionResult->getRouteName(), $actionResult->getRouteParameters()));
