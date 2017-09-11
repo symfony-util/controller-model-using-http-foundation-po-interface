@@ -11,8 +11,6 @@
 
 namespace SymfonyUtil\Component\HttpFoundationPOInterface;
 
-use Symfony\Component\HttpFoundation\Request;
-
 class IdActionModel
 {
     public function __invoke($id = null)
