@@ -17,7 +17,7 @@ use Symfony\Component\HttpKernel\Controller\ArgumentResolverInterface;
 class ArgumentResolvingActionModel
 {
     protected $argumentResolver;
-    protedted $actionModel;
+    protected $actionModel;
 
     public function __construct(ArgumentResolverInterface $argumentResolver, callable $actionModel)
     {
