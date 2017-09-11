@@ -12,17 +12,29 @@
 namespace SymfonyUtil\Component\HttpFoundationPOInterface;
 
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Controller\ArgumentResolverInterface;
 
 class ArgumentResolvingActionModel
 {
+    protected $argumentResolver;
+    protedted $actionModel;
+
     public function __construct(ArgumentResolverInterface $argumentResolver, callable $actionModel)
     {
-        $this->parameters = $parameters;
-        $this->response = $response;
+        $this->argumentResolver = $argumentResolver;
+        $this->actionModel = $actionModel;
     }
 
     public function __invoke(Request $request = null)
     {
-        return new NullRouteNameParameters(); // RouteNameParametersInterface
+        // controller arguments (adapeted from Symfony HttpKernel)
+        $arguments = $this->argumentResolver->getArguments($request, $this->actionModel);
+        // $event = new FilterControllerArgumentsEvent($this, $controller, $arguments, $request, $type);
+        // $this->dispatcher->dispatch(KernelEvents::CONTROLLER_ARGUMENTS, $event);
+        // $controller = $event->getController();
+        // $arguments = $event->getArguments();
+        // call controller (adapeted from Symfony HttpKernel)
+
+        return call_user_func_array($this->actionModel, $arguments);
     }
 }
