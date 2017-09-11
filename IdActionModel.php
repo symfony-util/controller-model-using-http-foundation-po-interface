@@ -17,6 +17,6 @@ class IdActionModel
 {
     public function __invoke($id = null)
     {
-        return new NullRouteNameParameters(); // RouteNameParametersInterface
+        return new RouteNameParameters('', ['id' => $id]); // RouteNameParametersInterface
     }
 }
