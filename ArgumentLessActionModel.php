@@ -11,8 +11,6 @@
 
 namespace SymfonyUtil\Component\HttpFoundationPOInterface;
 
-use Symfony\Component\HttpFoundation\Request;
-
 class ArgumentLessActionModel
 {
     public function __invoke()
