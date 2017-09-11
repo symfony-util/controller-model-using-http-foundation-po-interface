@@ -14,9 +14,7 @@ namespace SymfonyUtil\Component\HttpFoundationPOInterface;
 // Similar namespace in Symfony
 // https://github.com/symfony/symfony/tree/v3.3.8/src/Symfony/Component/Routing/Generator
 
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use SymfonyUtil\Component\HttpFoundation\ControllerModelInterface;
 use SymfonyUtil\Component\HttpFoundation\ReRouteInterface;
 use SymfonyUtil\Component\HttpFoundation\ResponseParameters;
@@ -49,7 +47,6 @@ class ReRouteControllerModel implements ControllerModelInterface
     {
         $actionResult = $this->actionModel->__invoke($request); // resturns RouteNameParametersInterface // php <= 5.6
         if ($actionResult->getRouteName()) {
-
             return new ResponseParameters([], $this->reRoute($actionResult->getRouteName(), $actionResult->getRouteParameters()));
             // TODO: To be filtered (one day) by
             // $this->viewModel[$actionResult->getRoute()](...$actionResult->getParameters())
