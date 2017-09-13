@@ -12,6 +12,7 @@
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Controller\ArgumentResolver;
+use SymfonyUtil\Component\HttpFoundationPOInterface\ArgumentLessActionModel;
 use SymfonyUtil\Component\HttpFoundationPOInterface\ArgumentResolvingActionModel;
 
 // use ... // used in string use ::class in php 7.1 symfony 4.0 version
