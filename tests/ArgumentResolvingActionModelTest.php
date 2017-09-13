@@ -11,7 +11,7 @@
 
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpKernel\Controller\ArgumentResolver;
+use Symfony\Component\HttpKernel\Controller\ArgumentResolver; // Needs Symfony ^3.0
 use SymfonyUtil\Component\HttpFoundationPOInterface\ArgumentLessActionModel;
 use SymfonyUtil\Component\HttpFoundationPOInterface\ArgumentResolvingActionModel;
 
