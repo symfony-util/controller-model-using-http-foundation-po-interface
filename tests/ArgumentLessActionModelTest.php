@@ -32,7 +32,7 @@ final class ArgumentLessActionModelTest extends TestCase
     {
         $this->assertInstanceOf(
             // ::class, // 5.4 < php
-            'SymfonyUtil\Component\HttpFoundation\RouteNameParametersInterface',
+            'SymfonyUtil\Component\HttpFoundationPOInterface\RouteNameParametersInterface',
             (new ArgumentLessActionModel())->__invoke()
         );
     }
