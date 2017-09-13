@@ -14,9 +14,7 @@ use SymfonyUtil\Component\HttpFoundationPOInterface\ArgumentLessActionModel;
 
 // use ... // used in string use ::class in php 7.1 symfony 4.0 version
 
-/**
- * @covers \SymfonyUtil\Component\HttpFoundation\NullControllerModel
- */
+/// @covers \SymfonyUtil\Component\HttpFoundationPOInterface\ArgumentLessActionModel
 final class ArgumentLessActionModelTest extends TestCase
 {
     public function testCanBeCreated()
