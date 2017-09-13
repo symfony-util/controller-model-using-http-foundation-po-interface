@@ -10,12 +10,10 @@
  */
 
 use PHPUnit\Framework\TestCase;
-use Symfony\Component\HttpFoundation\RedirectResponse;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use SymfonyUtil\Component\HttpFoundation\NullControllerModel;
+use SymfonyUtil\Component\HttpFoundationPOInterface\ArgumentLessActionModel;
+use SymfonyUtil\Component\HttpFoundationPOInterface\RouteNameParametersInterface;
 
-// use SymfonyUtil\Component\HttpFoundation\ResponseParameters; // used in string use ::class in php 7.1 symfony 4.0 version
+// use ... // used in string use ::class in php 7.1 symfony 4.0 version
 
 /**
  * @covers \SymfonyUtil\Component\HttpFoundation\NullControllerModel
@@ -26,87 +24,17 @@ final class ArgumentLessActionModelTest extends TestCase
     {
         $this->assertInstanceOf(
             // ::class, // 5.4 < php
-            'SymfonyUtil\Component\HttpFoundation\NullControllerModel',
-            new NullControllerModel()
+            'SymfonyUtil\Component\HttpFoundationPOInterface\ArgumentLessActionModel',
+            new ArgumentLessActionModel()
         );
     }
 
-    public function testCanBeCreatedWithOptionalResponse()
+    public function testReturnsRouteNameParametersInterface()
     {
         $this->assertInstanceOf(
             // ::class, // 5.4 < php
-            'SymfonyUtil\Component\HttpFoundation\NullControllerModel',
-            new NullControllerModel(new Response())
+            'SymfonyUtil\Component\HttpFoundation\RouteNameParametersInterface',
+            (new ArgumentLessActionModel())->__invoke()
         );
-    }
-
-    public function testRedirectResponseCanBeCreated()
-    {
-        $this->assertInstanceOf(
-            // ::class, // 5.4 < php
-            'SymfonyUtil\Component\HttpFoundation\NullControllerModel',
-            new NullControllerModel(new RedirectResponse('http://example.org/')) // Redirect example
-        );
-    }
-
-    public function testRequestReturnsResponseParameters()
-    {
-        $this->assertInstanceOf(
-            // ::class, // 5.4 < php
-            'SymfonyUtil\Component\HttpFoundation\ResponseParameters',
-            (new NullControllerModel())->__invoke(new Request())
-        );
-    }
-
-    public function testReturnsResponseParameters()
-    {
-        $this->assertInstanceOf(
-            // ::class, // 5.4 < php
-            'SymfonyUtil\Component\HttpFoundation\ResponseParameters',
-            (new NullControllerModel())->__invoke()
-        );
-    }
-
-    public function testRequestReturnsResponseParametersWithOptionalResponse()
-    {
-        $this->assertInstanceOf(
-            // ::class, // 5.4 < php
-            'SymfonyUtil\Component\HttpFoundation\ResponseParameters',
-            (new NullControllerModel(new Response()))->__invoke(new Request())
-        );
-    }
-
-    public function testReturnsResponseParametersWithOptionalResponse()
-    {
-        $this->assertInstanceOf(
-            // ::class, // 5.4 < php
-            'SymfonyUtil\Component\HttpFoundation\ResponseParameters',
-            (new NullControllerModel(new Response()))->__invoke()
-        );
-    }
-
-    public function testRedirectResponseReturnsUrl()
-    {
-        $example = 'http://example.org/';
-        $responseParameters = (new NullControllerModel(new RedirectResponse($example)))->__invoke();
-        $this->assertInstanceOf(
-            // ::class, // 5.4 < php
-            'SymfonyUtil\Component\HttpFoundation\ResponseParameters',
-            $responseParameters
-        );
-        $response = $responseParameters->getResponse();
-        $this->assertInstanceOf(
-            // ::class, // 5.4 < php
-            'Symfony\Component\HttpFoundation\Response',
-            $response
-        );
-        $this->assertInstanceOf(
-            // ::class, // 5.4 < php
-            'Symfony\Component\HttpFoundation\RedirectResponse',
-            $response
-        );
-        $url = $response->getTargetUrl();
-        $this->assertInternalType('string', $url);
-        $this->assertSame($example, $url);
     }
 }
