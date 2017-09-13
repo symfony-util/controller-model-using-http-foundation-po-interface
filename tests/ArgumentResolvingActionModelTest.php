@@ -10,6 +10,8 @@
  */
 
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Controller\ArgumentResolver;
 use SymfonyUtil\Component\HttpFoundationPOInterface\ArgumentResolvingActionModel;
 
 // use ... // used in string use ::class in php 7.1 symfony 4.0 version
@@ -22,7 +24,7 @@ final class ArgumentResolvingActionModelTest extends TestCase
         $this->assertInstanceOf(
             // ::class, // 5.4 < php
             'SymfonyUtil\Component\HttpFoundationPOInterface\ArgumentResolvingActionModel',
-            new ArgumentResolvingActionModel()
+            new ArgumentResolvingActionModel(new ArgumentResolver(), new ArgumentLessActionModel())
         );
     }
 
@@ -31,7 +33,7 @@ final class ArgumentResolvingActionModelTest extends TestCase
         $this->assertInstanceOf(
             // ::class, // 5.4 < php
             'SymfonyUtil\Component\HttpFoundationPOInterface\RouteNameParametersInterface',
-            (new ArgumentResolvingActionModel())->__invoke()
+            (new ArgumentResolvingActionModel(new ArgumentResolver(), new ArgumentLessActionModel()))->__invoke(new Request())
         );
     }
 }
