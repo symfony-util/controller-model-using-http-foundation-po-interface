@@ -25,6 +25,5 @@ interface RouteNameParametersInterface
     public function getViewModelParameters();
 }
 
-
 // Considere testing this way:
 // https://github.com/php-fig/log/blob/master/Psr/Log/Test/LoggerInterfaceTest.php
