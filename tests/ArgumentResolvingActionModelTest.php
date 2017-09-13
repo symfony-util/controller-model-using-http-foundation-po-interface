@@ -37,4 +37,13 @@ final class ArgumentResolvingActionModelTest extends TestCase
             (new ArgumentResolvingActionModel(new ArgumentResolver(), new ArgumentLessActionModel()))->__invoke(new Request())
         );
     }
+
+    public function testReturnsWithId()
+    {
+        $this->assertInstanceOf(
+            // ::class, // 5.4 < php
+            'SymfonyUtil\Component\HttpFoundationPOInterface\RouteNameParametersInterface',
+            (new ArgumentResolvingActionModel(new ArgumentResolver(), new IdActionModel()))->__invoke(new Request())
+        );
+    }
 }
