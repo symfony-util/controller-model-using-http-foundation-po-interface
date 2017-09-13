@@ -10,13 +10,21 @@
  */
 
 namespace SymfonyUtil\Component\HttpFoundationPOInterface;
+
 // TODO: Move to POI
 
 interface RouteNameParametersInterface
 {
-    public function getRouteName(); // string
+    /// @return string
+    public function getRouteName();
 
-    public function getRouteParameters(); // array
+    /// @return array
+    public function getRouteParameters();
 
-    public function getViewModelParameters(); // array
+    /// @return array
+    public function getViewModelParameters();
 }
+
+
+// Considere testing this way:
+// https://github.com/php-fig/log/blob/master/Psr/Log/Test/LoggerInterfaceTest.php
