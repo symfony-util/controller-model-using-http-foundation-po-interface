@@ -19,32 +19,23 @@ use SymfonyUtil\Component\HttpFoundationPOInterface\IdActionModel;
 // use ... // used in string use ::class in php 7.1 symfony 4.0 version
 
 /// @covers \SymfonyUtil\Component\HttpFoundationPOInterface\ArgumentLessActionModel
-final class ArgumentResolvingActionModelTest extends TestCase
+final class ArgumentResolverTest extends TestCase
 {
     public function testCanBeCreated()
     {
         $this->assertInstanceOf(
             // ::class, // 5.4 < php
-            'SymfonyUtil\Component\HttpFoundationPOInterface\ArgumentResolvingActionModel',
-            new ArgumentResolvingActionModel(new ArgumentResolver(), new ArgumentLessActionModel())
+            'Symfony\Component\HttpKernel\Controller\ArgumentResolver',
+            new ArgumentResolver()
         );
     }
 
-    public function testReturnsRouteNameParametersInterface()
+    public function testCanBeCreatedAsInterface()
     {
         $this->assertInstanceOf(
             // ::class, // 5.4 < php
-            'SymfonyUtil\Component\HttpFoundationPOInterface\RouteNameParametersInterface',
-            (new ArgumentResolvingActionModel(new ArgumentResolver(), new ArgumentLessActionModel()))->__invoke(new Request())
-        );
-    }
-
-    public function testReturnsWithId()
-    {
-        $this->assertInstanceOf(
-            // ::class, // 5.4 < php
-            'SymfonyUtil\Component\HttpFoundationPOInterface\RouteNameParametersInterface',
-            (new ArgumentResolvingActionModel(new ArgumentResolver(), new IdActionModel()))->__invoke(new Request())
+            'Symfony\Component\HttpKernel\Controller\ArgumentResolverInterface',
+            new ArgumentResolver()
         );
     }
 
@@ -52,14 +43,17 @@ final class ArgumentResolvingActionModelTest extends TestCase
     {
         // ((new ArgumentResolvingActionModel(new ArgumentResolver(), new IdActionModel()))->__invoke(new Request()))->getViewModelParameters()
         // Too much for PHP5.6, OK for 7.0
-        $routeNameParameters = (new ArgumentResolvingActionModel(new ArgumentResolver(), new IdActionModel()))->__invoke(new Request());
+        // $routeNameParameters = (new ArgumentResolvingActionModel(new ArgumentResolver(), new IdActionModel()))->__invoke(new Request());
         $this->assertArrayHasKey(
             'id',
-            $routeNameParameters->getViewModelParameters()
+            (new ArgumentResolver())->getArguments(
+                new Request(), // Request::create('/', 'GET', ['id' => 'Fabien']),
+                new IdActionModel()
+            )
         );
     }
 
-    public function testReturnsNullWithId()
+    public function testReturnsNullWithId() ///
     {
         $routeNameParameters = (new ArgumentResolvingActionModel(new ArgumentResolver(), new IdActionModel()))->__invoke(new Request());
         $viewModelParameters = $routeNameParameters->getViewModelParameters();
@@ -72,8 +66,8 @@ final class ArgumentResolvingActionModelTest extends TestCase
     public function testReturnsIdWithId()
     {
         $routeNameParameters = (new ArgumentResolvingActionModel(new ArgumentResolver(), new IdActionModel()))->__invoke(
-            Request::create('/', 'GET', ['id' => 'Fabien']
-        ));
+            Request::create('/', 'GET', ['id' => 'Fabien'])
+        );
         $viewModelParameters = $routeNameParameters->getViewModelParameters();
         // Too much for PHP5.6, OK for 7.0
         $this->assertSame(
