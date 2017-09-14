@@ -78,8 +78,18 @@ final class ArgumentResolverTest extends TestCase
     public function testMetadataRequestAttributeValueResolverSupports()
     {
         $this->assertTrue(
-            (new RequestAttributeValueResolver)->supports(
-                Request::create('/', 'GET', ['id' => 'Fabien']), 
+            (new RequestAttributeValueResolver())->supports(
+                Request::create('/', 'GET', ['id' => 'Fabien']),
+                ((new ArgumentMetadataFactory())->createArgumentMetadata(new IdActionModel()))[0]
+            )
+        );
+    }
+
+    public function testMetadataRequestAttributeValueResolverResolve()
+    {
+        $this->assertTrue(
+            (new RequestAttributeValueResolver())->resolve(
+                Request::create('/', 'GET', ['id' => 'Fabien']),
                 ((new ArgumentMetadataFactory())->createArgumentMetadata(new IdActionModel()))[0]
             )
         );
