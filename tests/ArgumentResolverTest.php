@@ -12,6 +12,7 @@
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Controller\ArgumentResolver; // Needs Symfony ^3.0
+use Symfony\Component\HttpKernel\Controller\ArgumentResolver\RequestAttributeValueResolver;
 use Symfony\Component\HttpKernel\ControllerMetadata\ArgumentMetadataFactory;
 use SymfonyUtil\Component\HttpFoundationPOInterface\ArgumentResolvingActionModel;
 use SymfonyUtil\Component\HttpFoundationPOInterface\IdActionModel;
@@ -70,6 +71,16 @@ final class ArgumentResolverTest extends TestCase
             'Fabien',
             Request::create('/', 'GET', ['id' => 'Fabien'])->attributes->get(
                 (((new ArgumentMetadataFactory())->createArgumentMetadata(new IdActionModel()))[0])->getName()
+            )
+        );
+    }
+
+    public function testMetadataRequestAttributeValueResolverSupports()
+    {
+        $this->assertTrue(
+            (new RequestAttributeValueResolver)->supports(
+                Request::create('/', 'GET', ['id' => 'Fabien']), 
+                ((new ArgumentMetadataFactory())->createArgumentMetadata(new IdActionModel()))[0]
             )
         );
     }
