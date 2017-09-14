@@ -68,4 +68,16 @@ final class ArgumentResolvingActionModelTest extends TestCase
             $viewModelParameters['id']
         );
     }
+
+    public function testReturnsIdWithId()
+    {
+        $routeNameParameters = (new ArgumentResolvingActionModel(new ArgumentResolver(), new IdActionModel()))->__invoke(
+            Request::create('/', 'GET', ['id' => 'Fabien']
+        ));
+        $viewModelParameters = $routeNameParameters->getViewModelParameters();
+        // Too much for PHP5.6, OK for 7.0
+        $this->assertNull(
+            $viewModelParameters['id']
+        );
+    }
 }
