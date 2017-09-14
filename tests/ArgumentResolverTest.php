@@ -46,7 +46,8 @@ final class ArgumentResolverTest extends TestCase
         $this->assertArrayHasKey(
             'id',
             (new ArgumentResolver())->getArguments(
-                new Request(), // Request::create('/', 'GET', ['id' => 'Fabien']),
+                // new Request(),
+                Request::create('/', 'GET', ['id' => 'Fabien']),
                 new IdActionModel()
             )
         );
