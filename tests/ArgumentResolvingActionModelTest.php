@@ -47,4 +47,12 @@ final class ArgumentResolvingActionModelTest extends TestCase
             (new ArgumentResolvingActionModel(new ArgumentResolver(), new IdActionModel()))->__invoke(new Request())
         );
     }
+
+    public function testReturnsArrayWithId()
+    {
+        $this->assertArrayHasKey(
+            'id',
+            ((new ArgumentResolvingActionModel(new ArgumentResolver(), new IdActionModel()))->__invoke(new Request()))->getViewModelParameters()
+        );
+    }
 }
