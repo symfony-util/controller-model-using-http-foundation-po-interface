@@ -12,7 +12,6 @@
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Controller\ArgumentResolver; // Needs Symfony ^3.0
-use SymfonyUtil\Component\HttpFoundationPOInterface\ArgumentLessActionModel;
 use SymfonyUtil\Component\HttpFoundationPOInterface\ArgumentResolvingActionModel;
 use SymfonyUtil\Component\HttpFoundationPOInterface\IdActionModel;
 
@@ -53,7 +52,7 @@ final class ArgumentResolverTest extends TestCase
         );
     }
 
-    public function testReturnsNullWithId() ///
+    public function ReturnsNullWithId() ///
     {
         $routeNameParameters = (new ArgumentResolvingActionModel(new ArgumentResolver(), new IdActionModel()))->__invoke(new Request());
         $viewModelParameters = $routeNameParameters->getViewModelParameters();
@@ -63,7 +62,7 @@ final class ArgumentResolverTest extends TestCase
         );
     }
 
-    public function testReturnsIdWithId()
+    public function ReturnsIdWithId() ///
     {
         $routeNameParameters = (new ArgumentResolvingActionModel(new ArgumentResolver(), new IdActionModel()))->__invoke(
             Request::create('/', 'GET', ['id' => 'Fabien'])
