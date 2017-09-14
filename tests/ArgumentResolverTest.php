@@ -41,7 +41,7 @@ final class ArgumentResolverTest extends TestCase
 
     public function testMetadata()
     {
-        dump((new ArgumentMetadataFactory())->createArgumentMetadata(new IdActionModel()));
+        var_dump((new ArgumentMetadataFactory())->createArgumentMetadata(new IdActionModel()));
         $this->assertNotNull(
             (new ArgumentMetadataFactory())->createArgumentMetadata(new IdActionModel())
         );
