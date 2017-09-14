@@ -39,11 +39,20 @@ final class ArgumentResolverTest extends TestCase
         );
     }
 
-    public function testMetadata()
+    public function testMetadataNotNull()
     {
         var_dump((new ArgumentMetadataFactory())->createArgumentMetadata(new IdActionModel()));
         $this->assertNotNull(
             (new ArgumentMetadataFactory())->createArgumentMetadata(new IdActionModel())
+        );
+    }
+
+    public function testMetadata()
+    {
+        $this->assertInstanceOf(
+            // ::class, // 5.4 < php
+            'Symfony\Component\HttpKernel\ControllerMetadata\ArgumentMetadata',
+            ((new ArgumentMetadataFactory())->createArgumentMetadata(new IdActionModel()))[0]
         );
     }
 
