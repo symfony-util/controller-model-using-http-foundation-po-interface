@@ -98,6 +98,11 @@ final class ArgumentResolverTest extends TestCase
 
     public function testReturnsArrayWithId()
     {
+        var_dump((new ArgumentResolver())->getArguments(
+                // new Request(),
+                Request::create('/', 'GET', ['id' => 'Fabien']),
+                new IdActionModel()
+        ));
         // ((new ArgumentResolvingActionModel(new ArgumentResolver(), new IdActionModel()))->__invoke(new Request()))->getViewModelParameters()
         // Too much for PHP5.6, OK for 7.0
         // $routeNameParameters = (new ArgumentResolvingActionModel(new ArgumentResolver(), new IdActionModel()))->__invoke(new Request());
