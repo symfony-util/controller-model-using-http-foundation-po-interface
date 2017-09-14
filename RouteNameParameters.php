@@ -20,7 +20,7 @@ class RouteNameParameters implements RouteNameParametersInterface
     protected $viewModelParameters;
 
     /// @param string $routeName
-    public function __construct(string $routeName, array $routeParameters, array $viewModelParameters)
+    public function __construct($routeName, array $routeParameters, array $viewModelParameters)
     {
         $this->routeName = $routeName;
         $this->routeParameters = $routeParameters;
