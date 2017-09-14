@@ -76,7 +76,7 @@ final class ArgumentResolvingActionModelTest extends TestCase
         ));
         $viewModelParameters = $routeNameParameters->getViewModelParameters();
         // Too much for PHP5.6, OK for 7.0
-        $this->assertEquals(
+        $this->assertSame(
             'Fabien',
             $viewModelParameters['id']
         );
