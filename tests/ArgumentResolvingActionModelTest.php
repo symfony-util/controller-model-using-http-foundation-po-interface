@@ -61,11 +61,11 @@ final class ArgumentResolvingActionModelTest extends TestCase
 
     public function testReturnsNullWithId()
     {
-        // ((new ArgumentResolvingActionModel(new ArgumentResolver(), new IdActionModel()))->__invoke(new Request()))->getViewModelParameters()
-        // Too much for PHP5.6, OK for 7.0
         $routeNameParameters = (new ArgumentResolvingActionModel(new ArgumentResolver(), new IdActionModel()))->__invoke(new Request());
+        $viewModelParameters = $routeNameParameters->getViewModelParameters();
+        // Too much for PHP5.6, OK for 7.0
         $this->assertNull(
-            ($routeNameParameters->getViewModelParameters())['id']
+            $viewModelParameters['id']
         );
     }
 }
