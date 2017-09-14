@@ -64,6 +64,16 @@ final class ArgumentResolverTest extends TestCase
         );
     }
 
+    public function testMetadataRequest()
+    {
+        $this->assertSame(
+            'Fabien',
+            Request::create('/', 'GET', ['id' => 'Fabien'])->attributes->get(
+                (((new ArgumentMetadataFactory())->createArgumentMetadata(new IdActionModel()))[0])->getName()
+            )
+        );
+    }
+
     public function testReturnsArrayWithId()
     {
         // ((new ArgumentResolvingActionModel(new ArgumentResolver(), new IdActionModel()))->__invoke(new Request()))->getViewModelParameters()
