@@ -101,7 +101,7 @@ final class ArgumentResolverTest extends TestCase
         var_dump((new ArgumentResolver())->getArguments(
                 // new Request(),
                 Request::create('/', 'GET', ['id' => 'Fabien']),
-                new IdActionModel()
+                [new IdActionModel(), '__invoke']
         ));
         // ((new ArgumentResolvingActionModel(new ArgumentResolver(), new IdActionModel()))->__invoke(new Request()))->getViewModelParameters()
         // Too much for PHP5.6, OK for 7.0
@@ -111,7 +111,7 @@ final class ArgumentResolverTest extends TestCase
             (new ArgumentResolver())->getArguments(
                 // new Request(),
                 Request::create('/', 'GET', ['id' => 'Fabien']),
-                new IdActionModel()
+                [new IdActionModel(), '__invoke']
             )
         );
     }
