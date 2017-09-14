@@ -12,6 +12,7 @@
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Controller\ArgumentResolver; // Needs Symfony ^3.0
+use Symfony\Component\HttpKernel\ControllerMetadata\ArgumentMetadataFactory;
 use SymfonyUtil\Component\HttpFoundationPOInterface\ArgumentResolvingActionModel;
 use SymfonyUtil\Component\HttpFoundationPOInterface\IdActionModel;
 
@@ -35,6 +36,13 @@ final class ArgumentResolverTest extends TestCase
             // ::class, // 5.4 < php
             'Symfony\Component\HttpKernel\Controller\ArgumentResolverInterface',
             new ArgumentResolver()
+        );
+    }
+
+    public function testMetadata()
+    {
+        $this->assertNull(
+            (new ArgumentMetadataFactory())->createArgumentMetadata(new IdActionModel())
         );
     }
 
