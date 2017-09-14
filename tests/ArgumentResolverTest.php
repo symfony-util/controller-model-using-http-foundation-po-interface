@@ -56,6 +56,14 @@ final class ArgumentResolverTest extends TestCase
         );
     }
 
+    public function testMetadataName()
+    {
+        $this->assertSame(
+            'id',
+            (((new ArgumentMetadataFactory())->createArgumentMetadata(new IdActionModel()))[0])->getName()
+        );
+    }
+
     public function testReturnsArrayWithId()
     {
         // ((new ArgumentResolvingActionModel(new ArgumentResolver(), new IdActionModel()))->__invoke(new Request()))->getViewModelParameters()
