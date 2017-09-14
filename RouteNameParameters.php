@@ -15,6 +15,18 @@ namespace SymfonyUtil\Component\HttpFoundationPOInterface;
 
 class RouteNameParameters implements RouteNameParametersInterface
 {
+    protected $routeName;
+    protected $routeParameters;
+    protected $viewModelParameters;
+
+    /// @param string $routeName
+    public function __construct(string $routeName, array $routeParameters, array $viewModelParameters)
+    {
+        $this->routeName = $routeName;
+        $this->routeParameters = $routeParameters;
+        $this->viewModelParameters = $viewModelParameters;
+    }
+
     public function getRouteName()
     {
         return $this->routeName;
