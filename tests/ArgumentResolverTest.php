@@ -65,13 +65,8 @@ final class ArgumentResolverTest extends TestCase
         );
     }
 
-    public function testRequestQuery()
+    public function RequestQuery() // unused
     {
-        // var_dump(Request::create('/', 'GET', ['id' => 'Fabien']));
-        // var_dump(Request::create('/', 'GET', ['id' => 'Fabien'])->attributes);
-        // var_dump(Request::create('/', 'GET', ['id' => 'Fabien'])->attributes->get('id'));
-        // var_dump(Request::create('/', 'GET', ['id' => 'Fabien'])->query);
-        // var_dump(Request::create('/', 'GET', ['id' => 'Fabien'])->query->get('id'));
         $this->assertSame(
             'Fabien',
             Request::create('/', 'GET', ['id' => 'Fabien'])->query->get('id')
@@ -90,9 +85,11 @@ final class ArgumentResolverTest extends TestCase
 
     public function testMetadataRequest()
     {
+        $request = new Request();
+        $request->attributes->set('id', 'Fabien');
         $this->assertSame(
             'Fabien',
-            Request::create('/', 'GET', ['id' => 'Fabien'])->query->get(
+            $request->attributes->get(
                 (((new ArgumentMetadataFactory())->createArgumentMetadata(new IdActionModel()))[0])->getName()
             )
         );
@@ -100,14 +97,16 @@ final class ArgumentResolverTest extends TestCase
 
     public function testMetadataRequestAttributeValueResolverSupports()
     {
+        $request = new Request();
+        $request->attributes->set('id', 'Fabien');
         var_dump((new RequestAttributeValueResolver())->supports(
-                Request::create('/', 'GET', ['id' => 'Fabien']),
+                $request,
                 ((new ArgumentMetadataFactory())->createArgumentMetadata(new IdActionModel()))[0]
             )
         );
         $this->assertTrue(
             (new RequestAttributeValueResolver())->supports(
-                Request::create('/', 'GET', ['id' => 'Fabien']),
+                $request,
                 ((new ArgumentMetadataFactory())->createArgumentMetadata(new IdActionModel()))[0]
             )
         );
@@ -115,10 +114,12 @@ final class ArgumentResolverTest extends TestCase
 
     public function testMetadataRequestAttributeValueResolverResolve()
     {
+        $request = new Request();
+        $request->attributes->set('id', 'Fabien');
         $this->assertSame(
             'Fabien',
             (new RequestAttributeValueResolver())->resolve(
-                Request::create('/', 'GET', ['id' => 'Fabien']),
+                $request,
                 ((new ArgumentMetadataFactory())->createArgumentMetadata(new IdActionModel()))[0]
             )
         );
@@ -126,9 +127,11 @@ final class ArgumentResolverTest extends TestCase
 
     public function testReturnsArrayWithId()
     {
+        $request = new Request();
+        $request->attributes->set('id', 'Fabien');
         var_dump((new ArgumentResolver())->getArguments(
                 // new Request(),
-                Request::create('/', 'GET', ['id' => 'Fabien']),
+                $request,
                 [new IdActionModel(), '__invoke']
         ));
         // ((new ArgumentResolvingActionModel(new ArgumentResolver(), new IdActionModel()))->__invoke(new Request()))->getViewModelParameters()
@@ -138,7 +141,7 @@ final class ArgumentResolverTest extends TestCase
             'id',
             (new ArgumentResolver())->getArguments(
                 // new Request(),
-                Request::create('/', 'GET', ['id' => 'Fabien']),
+                $request,
                 [new IdActionModel(), '__invoke']
             )
         );
@@ -156,6 +159,8 @@ final class ArgumentResolverTest extends TestCase
 
     public function ReturnsIdWithId() ///
     {
+        $request = new Request();
+        $request->attributes->set('id', 'Fabien');
         $routeNameParameters = (new ArgumentResolvingActionModel(new ArgumentResolver(), new IdActionModel()))->__invoke(
             Request::create('/', 'GET', ['id' => 'Fabien'])
         );
