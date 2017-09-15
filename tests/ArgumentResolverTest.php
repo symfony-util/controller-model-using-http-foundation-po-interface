@@ -132,7 +132,7 @@ final class ArgumentResolverTest extends TestCase
         // Too much for PHP5.6, OK for 7.0
         // $routeNameParameters = (new ArgumentResolvingActionModel(new ArgumentResolver(), new IdActionModel()))->__invoke(new Request());
         $this->assertArrayHasKey(
-            'id',
+            0,
             (new ArgumentResolver())->getArguments(
                 // new Request(),
                 $request,
