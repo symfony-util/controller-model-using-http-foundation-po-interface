@@ -41,10 +41,12 @@ final class ArgumentResolvingActionModelTest extends TestCase
 
     public function testReturnsWithId()
     {
+        $request = new Request();
+        $request->attributes->set('id', 'Fabien');
         $this->assertInstanceOf(
             // ::class, // 5.4 < php
             'SymfonyUtil\Component\HttpFoundationPOInterface\RouteNameParametersInterface',
-            (new ArgumentResolvingActionModel(new ArgumentResolver(), new IdActionModel()))->__invoke(new Request())
+            (new ArgumentResolvingActionModel(new ArgumentResolver(), new IdActionModel()))->__invoke($request)
         );
     }
 
@@ -52,7 +54,9 @@ final class ArgumentResolvingActionModelTest extends TestCase
     {
         // ((new ArgumentResolvingActionModel(new ArgumentResolver(), new IdActionModel()))->__invoke(new Request()))->getViewModelParameters()
         // Too much for PHP5.6, OK for 7.0
-        $routeNameParameters = (new ArgumentResolvingActionModel(new ArgumentResolver(), new IdActionModel()))->__invoke(new Request());
+        $request = new Request();
+        $request->attributes->set('id', 'Fabien');
+        $routeNameParameters = (new ArgumentResolvingActionModel(new ArgumentResolver(), new IdActionModel()))->__invoke($request);
         $this->assertArrayHasKey(
             'id',
             $routeNameParameters->getViewModelParameters()
@@ -61,6 +65,8 @@ final class ArgumentResolvingActionModelTest extends TestCase
 
     public function testReturnsNullWithId()
     {
+        $request = new Request();
+        $request->attributes->set('id', 'Fabien');
         $routeNameParameters = (new ArgumentResolvingActionModel(new ArgumentResolver(), new IdActionModel()))->__invoke(new Request());
         $viewModelParameters = $routeNameParameters->getViewModelParameters();
         // Too much for PHP5.6, OK for 7.0
@@ -71,8 +77,10 @@ final class ArgumentResolvingActionModelTest extends TestCase
 
     public function testReturnsIdWithId()
     {
+        $request = new Request();
+        $request->attributes->set('id', 'Fabien');
         $routeNameParameters = (new ArgumentResolvingActionModel(new ArgumentResolver(), new IdActionModel()))->__invoke(
-            Request::create('/', 'GET', ['id' => 'Fabien'])
+            $request
         );
         $viewModelParameters = $routeNameParameters->getViewModelParameters();
         // Too much for PHP5.6, OK for 7.0
