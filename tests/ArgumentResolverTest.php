@@ -99,11 +99,6 @@ final class ArgumentResolverTest extends TestCase
     {
         $request = new Request();
         $request->attributes->set('id', 'Fabien');
-        var_dump((new RequestAttributeValueResolver())->supports(
-                $request,
-                ((new ArgumentMetadataFactory())->createArgumentMetadata(new IdActionModel()))[0]
-            )
-        );
         $this->assertTrue(
             (new RequestAttributeValueResolver())->supports(
                 $request,
@@ -116,6 +111,10 @@ final class ArgumentResolverTest extends TestCase
     {
         $request = new Request();
         $request->attributes->set('id', 'Fabien');
+        var_dump((new RequestAttributeValueResolver())->resolve(
+                $request,
+                ((new ArgumentMetadataFactory())->createArgumentMetadata(new IdActionModel()))[0]
+            ));
         $this->assertSame(
             'Fabien',
             (new RequestAttributeValueResolver())->resolve(
