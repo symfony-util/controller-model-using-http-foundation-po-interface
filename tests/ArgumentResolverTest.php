@@ -42,7 +42,7 @@ final class ArgumentResolverTest extends TestCase
 
     public function testMetadataNotNull()
     {
-        var_dump((new ArgumentMetadataFactory())->createArgumentMetadata(new IdActionModel()));
+        // var_dump((new ArgumentMetadataFactory())->createArgumentMetadata(new IdActionModel()));
         $this->assertNotNull(
             (new ArgumentMetadataFactory())->createArgumentMetadata(new IdActionModel())
         );
@@ -123,18 +123,9 @@ final class ArgumentResolverTest extends TestCase
     {
         $request = new Request();
         $request->attributes->set('id', 'Fabien');
-        var_dump((new ArgumentResolver())->getArguments(
-                // new Request(),
-                $request,
-                new IdActionModel()
-        ));
-        // ((new ArgumentResolvingActionModel(new ArgumentResolver(), new IdActionModel()))->__invoke(new Request()))->getViewModelParameters()
-        // Too much for PHP5.6, OK for 7.0
-        // $routeNameParameters = (new ArgumentResolvingActionModel(new ArgumentResolver(), new IdActionModel()))->__invoke(new Request());
         $this->assertArrayHasKey(
             0,
             (new ArgumentResolver())->getArguments(
-                // new Request(),
                 $request,
                 new IdActionModel()
             )
@@ -154,7 +145,7 @@ final class ArgumentResolverTest extends TestCase
         );
     }
 
-    public function testReturnsNullWithId()
+    public function ReturnsNullWithId() // usefullness of test? -> no more a test
     {
         $routeNameParameters = (new ArgumentResolvingActionModel(new ArgumentResolver(), new IdActionModel()))->__invoke(new Request());
         $viewModelParameters = $routeNameParameters->getViewModelParameters();
