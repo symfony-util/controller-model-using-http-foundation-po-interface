@@ -63,7 +63,7 @@ final class ArgumentResolverTest extends TestCase
         $a = (new ArgumentMetadataFactory())->createArgumentMetadata(new IdActionModel()); // php <= 5.6
         $this->assertSame(
             'id',
-            ($a[0])->getName()
+            $a[0]->getName()
         );
     }
 
