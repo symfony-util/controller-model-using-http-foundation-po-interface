@@ -154,7 +154,7 @@ final class ArgumentResolverTest extends TestCase
         );
     }
 
-    public function ReturnsNullWithId() ///
+    public function testReturnsNullWithId()
     {
         $routeNameParameters = (new ArgumentResolvingActionModel(new ArgumentResolver(), new IdActionModel()))->__invoke(new Request());
         $viewModelParameters = $routeNameParameters->getViewModelParameters();
@@ -164,12 +164,12 @@ final class ArgumentResolverTest extends TestCase
         );
     }
 
-    public function ReturnsIdWithId() ///
+    public function testReturnsIdWithId()
     {
         $request = new Request();
         $request->attributes->set('id', 'Fabien');
         $routeNameParameters = (new ArgumentResolvingActionModel(new ArgumentResolver(), new IdActionModel()))->__invoke(
-            Request::create('/', 'GET', ['id' => 'Fabien'])
+            $request
         );
         $viewModelParameters = $routeNameParameters->getViewModelParameters();
         // Too much for PHP5.6, OK for 7.0
