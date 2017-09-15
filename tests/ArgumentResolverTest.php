@@ -67,11 +67,11 @@ final class ArgumentResolverTest extends TestCase
 
     public function testRequest()
     {
-        var_dump(Request::create('/', 'GET', ['id' => 'Fabien']));
-        var_dump(Request::create('/', 'GET', ['id' => 'Fabien'])->attributes);
-        var_dump(Request::create('/', 'GET', ['id' => 'Fabien'])->attributes->get('id'));
-        var_dump(Request::create('/', 'GET', ['id' => 'Fabien'])->query);
-        var_dump(Request::create('/', 'GET', ['id' => 'Fabien'])->query->get('id'));
+        // var_dump(Request::create('/', 'GET', ['id' => 'Fabien']));
+        // var_dump(Request::create('/', 'GET', ['id' => 'Fabien'])->attributes);
+        // var_dump(Request::create('/', 'GET', ['id' => 'Fabien'])->attributes->get('id'));
+        // var_dump(Request::create('/', 'GET', ['id' => 'Fabien'])->query);
+        // var_dump(Request::create('/', 'GET', ['id' => 'Fabien'])->query->get('id'));
         $this->assertSame(
             'Fabien',
             Request::create('/', 'GET', ['id' => 'Fabien'])->query->get('id')
@@ -82,7 +82,7 @@ final class ArgumentResolverTest extends TestCase
     {
         $this->assertSame(
             'Fabien',
-            Request::create('/', 'GET', ['id' => 'Fabien'])->attributes->get(
+            Request::create('/', 'GET', ['id' => 'Fabien'])->query->get(
                 (((new ArgumentMetadataFactory())->createArgumentMetadata(new IdActionModel()))[0])->getName()
             )
         );
