@@ -50,7 +50,7 @@ final class ArgumentResolverTest extends TestCase
 
     public function testMetadata()
     {
-        $a = (new ArgumentMetadataFactory())->createArgumentMetadata(new IdActionModel()) // php <= 5.6
+        $a = (new ArgumentMetadataFactory())->createArgumentMetadata(new IdActionModel()); // php <= 5.6
         $this->assertInstanceOf(
             // ::class, // 5.4 < php
             'Symfony\Component\HttpKernel\ControllerMetadata\ArgumentMetadata',
@@ -60,7 +60,7 @@ final class ArgumentResolverTest extends TestCase
 
     public function testMetadataName()
     {
-        $a = (new ArgumentMetadataFactory())->createArgumentMetadata(new IdActionModel()) // php <= 5.6
+        $a = (new ArgumentMetadataFactory())->createArgumentMetadata(new IdActionModel()); // php <= 5.6
         $this->assertSame(
             'id',
             ($a[0])->getName()
