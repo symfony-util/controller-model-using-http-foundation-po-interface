@@ -111,10 +111,12 @@ final class ArgumentResolverTest extends TestCase
     {
         $request = new Request();
         $request->attributes->set('id', 'Fabien');
-        var_dump((new RequestAttributeValueResolver())->resolve(
+        foreach ((new RequestAttributeValueResolver())->resolve(
                 $request,
                 ((new ArgumentMetadataFactory())->createArgumentMetadata(new IdActionModel()))[0]
-            ));
+            ) as $i) {
+            var_dump($i);
+        }
         $this->assertSame(
             'Fabien',
             (new RequestAttributeValueResolver())->resolve(
