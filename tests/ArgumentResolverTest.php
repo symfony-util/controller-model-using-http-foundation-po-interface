@@ -87,35 +87,38 @@ final class ArgumentResolverTest extends TestCase
 
     public function testMetadataRequest()
     {
+        $a = (new ArgumentMetadataFactory())->createArgumentMetadata(new IdActionModel())
         $request = new Request();
         $request->attributes->set('id', 'Fabien');
         $this->assertSame(
             'Fabien',
             $request->attributes->get(
-                (((new ArgumentMetadataFactory())->createArgumentMetadata(new IdActionModel()))[0])->getName()
+                $a[0]->getName()
             )
         );
     }
 
     public function testMetadataRequestAttributeValueResolverSupports()
     {
+        $a = (new ArgumentMetadataFactory())->createArgumentMetadata(new IdActionModel())
         $request = new Request();
         $request->attributes->set('id', 'Fabien');
         $this->assertTrue(
             (new RequestAttributeValueResolver())->supports(
                 $request,
-                ((new ArgumentMetadataFactory())->createArgumentMetadata(new IdActionModel()))[0]
+                $a[0]
             )
         );
     }
 
     public function testMetadataRequestAttributeValueResolverResolve()
     {
+        $a = (new ArgumentMetadataFactory())->createArgumentMetadata(new IdActionModel())
         $request = new Request();
         $request->attributes->set('id', 'Fabien');
         foreach ((new RequestAttributeValueResolver())->resolve(
                 $request,
-                ((new ArgumentMetadataFactory())->createArgumentMetadata(new IdActionModel()))[0]
+                $a[0]
             ) as $i) {
             $this->assertSame('Fabien', $i);
         }
