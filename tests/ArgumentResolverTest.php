@@ -139,14 +139,15 @@ final class ArgumentResolverTest extends TestCase
 
     public function testReturnsArrayValueWithId()
     {
+        $a = (new ArgumentResolver())->getArguments(
+                $request,
+                new IdActionModel()
+        );
         $request = new Request();
         $request->attributes->set('id', 'Fabien');
         $this->assertSame(
             'Fabien',
-            ((new ArgumentResolver())->getArguments(
-                $request,
-                new IdActionModel()
-            ))[0]
+            $a[0]
         );
     }
 
