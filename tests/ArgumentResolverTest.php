@@ -65,6 +65,14 @@ final class ArgumentResolverTest extends TestCase
         );
     }
 
+    public function testRequest()
+    {
+        $this->assertSame(
+            'Fabien',
+            Request::create('/', 'GET', ['id' => 'Fabien'])->attributes->get('id')
+        );
+    }
+
     public function testMetadataRequest()
     {
         $this->assertSame(
