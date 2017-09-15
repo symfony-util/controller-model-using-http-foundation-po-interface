@@ -13,8 +13,8 @@ namespace SymfonyUtil\Component\HttpFoundationPOInterface;
 
 class IdActionModel
 {
-    // public function __invoke($id = null)
-    public function __invoke($id)
+    public function __invoke($id = null)
+    // public function __invoke($id)
     {
         return new RouteNameParameters('', [], ['id' => $id]); // RouteNameParametersInterface
     }
