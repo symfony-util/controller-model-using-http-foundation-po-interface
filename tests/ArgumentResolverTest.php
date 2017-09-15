@@ -65,7 +65,7 @@ final class ArgumentResolverTest extends TestCase
         );
     }
 
-    public function testRequest()
+    public function testRequestQuery()
     {
         // var_dump(Request::create('/', 'GET', ['id' => 'Fabien']));
         // var_dump(Request::create('/', 'GET', ['id' => 'Fabien'])->attributes);
@@ -75,6 +75,16 @@ final class ArgumentResolverTest extends TestCase
         $this->assertSame(
             'Fabien',
             Request::create('/', 'GET', ['id' => 'Fabien'])->query->get('id')
+        );
+    }
+
+    public function testRequestAttribute()
+    {
+        $request = new Request();
+        $request->attributes->set('id', 'Fabien')
+        $this->assertSame(
+            'Fabien',
+            $request->attributes->get('id')
         );
     }
 
