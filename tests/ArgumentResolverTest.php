@@ -115,15 +115,8 @@ final class ArgumentResolverTest extends TestCase
                 $request,
                 ((new ArgumentMetadataFactory())->createArgumentMetadata(new IdActionModel()))[0]
             ) as $i) {
-            var_dump($i);
+            $this->assertSame('Fabien', $i);
         }
-        $this->assertSame(
-            'Fabien',
-            (new RequestAttributeValueResolver())->resolve(
-                $request,
-                ((new ArgumentMetadataFactory())->createArgumentMetadata(new IdActionModel()))[0]
-            )
-        );
     }
 
     public function testReturnsArrayWithId()
