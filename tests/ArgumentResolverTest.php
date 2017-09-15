@@ -70,9 +70,11 @@ final class ArgumentResolverTest extends TestCase
         var_dump(Request::create('/', 'GET', ['id' => 'Fabien']));
         var_dump(Request::create('/', 'GET', ['id' => 'Fabien'])->attributes);
         var_dump(Request::create('/', 'GET', ['id' => 'Fabien'])->attributes->get('id'));
+        var_dump(Request::create('/', 'GET', ['id' => 'Fabien'])->query);
+        var_dump(Request::create('/', 'GET', ['id' => 'Fabien'])->query->get('id'));
         $this->assertSame(
             'Fabien',
-            Request::create('/', 'GET', ['id' => 'Fabien'])->attributes->get('id')
+            Request::create('/', 'GET', ['id' => 'Fabien'])->query->get('id')
         );
     }
 
