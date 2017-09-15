@@ -81,7 +81,7 @@ final class ArgumentResolverTest extends TestCase
     public function testRequestAttribute()
     {
         $request = new Request();
-        $request->attributes->set('id', 'Fabien')
+        $request->attributes->set('id', 'Fabien');
         $this->assertSame(
             'Fabien',
             $request->attributes->get('id')
