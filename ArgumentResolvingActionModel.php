@@ -35,6 +35,6 @@ class ArgumentResolvingActionModel
         // $arguments = $event->getArguments();
         // call controller (adapeted from Symfony HttpKernel)
 
-        return call_user_func_array($this->actionModel, $arguments);
+        return \call_user_func_array($this->actionModel, $arguments);
     }
 }
